@@ -39,7 +39,6 @@ export default function Home() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {console.log(weather)}
         <button type='submit' onClick={(e) => handleSubmit(e)}>
           Submit
         </button>
