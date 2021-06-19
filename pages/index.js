@@ -7,19 +7,27 @@ export default function Home() {
   const [weather, setWeather] = React.useState('')
   const [isCelsius, setIsCelsius] = React.useState(false)
 
+  const ref = React.useRef(null)
+
+  React.useEffect(() => {
+    ref.current.focus()
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      const response = await fetch('./api/hello', {
-        method: 'POST',
-        body: city,
-      })
-      const data = await response.json()
-      setWeather(data)
-    } catch (error) {
-      console.error(error)
+    if (city) {
+      try {
+        const response = await fetch('./api/weather', {
+          method: 'POST',
+          body: city,
+        })
+        const data = await response.json()
+        setWeather(data)
+      } catch (error) {
+        console.error(error)
+      }
+      setCity('')
     }
-    setCity('')
   }
 
   return (
@@ -31,15 +39,23 @@ export default function Home() {
       </Head>
 
       <form className={styles.form}>
-        <label htmlFor='city'>City</label>
+        <label htmlFor='city' className={styles.label}>
+          Enter name of city or zipcode
+        </label>
         <input
           type='text'
           id='city'
           name='city'
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          className={styles.input}
+          ref={ref}
         />
-        <button type='submit' onClick={(e) => handleSubmit(e)}>
+        <button
+          type='submit'
+          onClick={(e) => handleSubmit(e)}
+          className={styles.button}
+        >
           Submit
         </button>
       </form>

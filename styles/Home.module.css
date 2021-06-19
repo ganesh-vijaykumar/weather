@@ -8,6 +8,8 @@
 
 .form {
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .dataContainer {
@@ -16,8 +18,8 @@
   box-sizing: border-box;
   box-shadow: 0 0 1px 1px teal;
   padding: 5px;
-  max-width: 95%;
-  height: 150px;
+  max-width: 75%;
+  min-width: 30%;
 }
 
 .condition {
@@ -45,4 +47,29 @@
 .location {
   padding: 20px 10px 0 10px;
   height: 100%;
+  text-align: center;
+}
+
+.label {
+  margin-bottom: 20px;
+}
+
+.input {
+  margin-bottom: 20px;
+  outline: none;
+  background: whitesmoke;
+}
+
+.button {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background: coral;
+}
+
+@media only screen and (max-width: 1202px) {
+  .dataContainer {
+    flex-direction: column;
+    max-width: 90%;
+  }
 }
